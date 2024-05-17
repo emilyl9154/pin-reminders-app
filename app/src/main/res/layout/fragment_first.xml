@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="440dp"
+            android:layout_marginEnd="130dp"
+            android:text="Confirm"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/selected_date_time"
+            android:layout_width="323dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="405dp"
+            android:gravity="center"
+            android:text="mm/dd/yyyy hh:mm xm"
+            android:textColor="?attr/colorPrimaryFixedDim"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/reminder_sent_at_txt"
+            android:layout_width="311dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="370dp"
+            android:gravity="center"
+            android:text="Reminder will be sent at:"
+            android:textColor="?attr/colorPrimaryFixedDim"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/schedule"
+            android:layout_width="114dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginBottom="16dp"
+            android:text="Schedule"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.76"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.126" />
+
+        <Button
+            android:id="@+id/pin"
+            android:layout_width="114dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="90dp"
+            android:layout_marginBottom="16dp"
+            android:text="Pin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.255"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.132" />
+
+        <TextView
+            android:id="@+id/create_notif_title"
+            android:layout_width="311dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="116dp"
+            android:gravity="center"
+            android:text="Create a reminder"
+            android:textColor="?attr/colorPrimaryFixedDim"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="295dp"
+            android:layout_height="99dp"
+            android:layout_marginTop="178dp"
+            android:layout_marginBottom="103dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textbox"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:hint="Type something..."
+                android:singleLine="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
