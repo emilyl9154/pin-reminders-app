@@ -65,7 +65,7 @@ public class FirstFragment extends Fragment {
                 .setSmallIcon(R.drawable.baseline_notifications_active_24)
                 .setContentTitle("Reminder(s)")
                 .setContentText(bodyText)
-                .setOngoing(true) // make it pinned (will not work on android 14+)
+                .setOngoing(true) // make it pinned (can still be swiped away on android 14+)
                 .build();
 
         Log.d("i","Made notification");
@@ -103,7 +103,7 @@ public class FirstFragment extends Fragment {
             }
         }
 
-        // Variables for scheduling pinreminders
+        // Variables for scheduling
         AlarmManager alarmManager =
                 (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, NotificationBroadcastReceiver.class);
@@ -126,73 +126,73 @@ public class FirstFragment extends Fragment {
             }
         });
 
-
+        // Beyond MVP; not done yet
         final long[] timeInMilliseconds = {0};
-        binding.schedule.setOnClickListener(new View.OnClickListener() {
-            // !!! call method sendNotification to send
-            @Override
-            public void onClick(View view) {
-                EditText editText = (EditText) getActivity().findViewById(R.id.textbox);
-                notifContent = editText.getText().toString(); // body text of notification
-
-                // Pick date
-                final Calendar c = Calendar.getInstance();
-                int cYear = c.get(Calendar.YEAR);
-                int cMonth = c.get(Calendar.MONTH);
-                int cDay = c.get(Calendar.DAY_OF_MONTH);
-
-                // Pick time
-                int cHour = c.get(Calendar.HOUR_OF_DAY);
-                int cMin = c.get(Calendar.MINUTE);
-
-                final int[] selectedDay = {0};
-                final int[] selectedMonth = {0};
-                final int[] selectedYear = {0};
-
-                TextView selectedDateTimeTxt = (TextView) getActivity().findViewById(R.id.reminder_sent_at_txt);
-                TextView selectedDateTime = (TextView) getActivity().findViewById(R.id.selected_date_time);
-                Button confirmBtn = (Button) getActivity().findViewById(R.id.confirm);
-
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(context,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hour, int min) {
-                                // 1. Using Calendar
-                                Calendar targetCal = Calendar.getInstance();
-                                targetCal.set(Calendar.YEAR, selectedYear[0]);
-                                targetCal.set(Calendar.MONTH, selectedMonth[0]);
-                                targetCal.set(Calendar.DAY_OF_MONTH, selectedDay[0]);
-                                targetCal.set(Calendar.HOUR_OF_DAY, hour);
-                                targetCal.set(Calendar.MINUTE, min);
-
-                                // 2. Get milliseconds
-                                timeInMilliseconds[0] = targetCal.getTimeInMillis();
-
-                                // Update UI (optional)
-                                SimpleDateFormat format = new SimpleDateFormat("hh:mm a"); // hh:mm am/pm
-                                String formatted12h = format.format(targetCal.getTime());
-                                selectedDateTime.setText(selectedMonth[0] + "/" + selectedDay[0] + "/" + selectedYear[0] + " " + formatted12h);
-
-                                selectedDateTimeTxt.setVisibility(View.VISIBLE);
-                                selectedDateTime.setVisibility(View.VISIBLE);
-                                confirmBtn.setVisibility(View.VISIBLE);
-                            }
-                        }, cHour, cMin, false); // false = will be 12h format (not working?)
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(context,
-                    new DatePickerDialog.OnDateSetListener(){
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int day){
-                            selectedYear[0] = year;
-                            selectedMonth[0] = month;
-                            selectedDay[0] = day;
-                            timePickerDialog.show();
-                        }
-                    }, cYear, cMonth, cDay);
-                datePickerDialog.show();
-            }
-        });
+//        binding.schedule.setOnClickListener(new View.OnClickListener() {
+//            // !!! call method sendNotification to send
+//            @Override
+//            public void onClick(View view) {
+//                EditText editText = (EditText) getActivity().findViewById(R.id.textbox);
+//                notifContent = editText.getText().toString(); // body text of notification
+//
+//                // Pick date
+//                final Calendar c = Calendar.getInstance();
+//                int cYear = c.get(Calendar.YEAR);
+//                int cMonth = c.get(Calendar.MONTH);
+//                int cDay = c.get(Calendar.DAY_OF_MONTH);
+//
+//                // Pick time
+//                int cHour = c.get(Calendar.HOUR_OF_DAY);
+//                int cMin = c.get(Calendar.MINUTE);
+//
+//                final int[] selectedDay = {0};
+//                final int[] selectedMonth = {0};
+//                final int[] selectedYear = {0};
+//
+//                TextView selectedDateTimeTxt = (TextView) getActivity().findViewById(R.id.reminder_sent_at_txt);
+//                TextView selectedDateTime = (TextView) getActivity().findViewById(R.id.selected_date_time);
+//                Button confirmBtn = (Button) getActivity().findViewById(R.id.confirm);
+//
+//
+//                TimePickerDialog timePickerDialog = new TimePickerDialog(context,
+//                        new TimePickerDialog.OnTimeSetListener() {
+//                            @Override
+//                            public void onTimeSet(TimePicker view, int hour, int min) {
+//                                // 1. Using Calendar
+//                                Calendar targetCal = Calendar.getInstance();
+//                                targetCal.set(Calendar.YEAR, selectedYear[0]);
+//                                targetCal.set(Calendar.MONTH, selectedMonth[0]);
+//                                targetCal.set(Calendar.DAY_OF_MONTH, selectedDay[0]);
+//                                targetCal.set(Calendar.HOUR_OF_DAY, hour);
+//                                targetCal.set(Calendar.MINUTE, min);
+//
+//                                // 2. Get milliseconds
+//                                timeInMilliseconds[0] = targetCal.getTimeInMillis();
+//
+//                                // Update UI (optional)
+//                                SimpleDateFormat format = new SimpleDateFormat("hh:mm a"); // hh:mm am/pm
+//                                String formatted12h = format.format(targetCal.getTime());
+//                                selectedDateTime.setText(selectedMonth[0] + "/" + selectedDay[0] + "/" + selectedYear[0] + " " + formatted12h);
+//
+//                                selectedDateTimeTxt.setVisibility(View.VISIBLE);
+//                                selectedDateTime.setVisibility(View.VISIBLE);
+//                                confirmBtn.setVisibility(View.VISIBLE);
+//                            }
+//                        }, cHour, cMin, false); // false = will be 12h format (not working?)
+//
+//                DatePickerDialog datePickerDialog = new DatePickerDialog(context,
+//                    new DatePickerDialog.OnDateSetListener(){
+//                        @Override
+//                        public void onDateSet(DatePicker view, int year, int month, int day){
+//                            selectedYear[0] = year;
+//                            selectedMonth[0] = month;
+//                            selectedDay[0] = day;
+//                            timePickerDialog.show();
+//                        }
+//                    }, cYear, cMonth, cDay);
+//                datePickerDialog.show();
+//            }
+//        });
 
         binding.confirm.setOnClickListener(new View.OnClickListener() {
             @Override
